@@ -10,33 +10,23 @@ public class DateService {
     public Long differenceBirthdayDateAndNowDate (String birthdayDate, ExportDateName exportDateName) {
         Date nowDate = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-
-        switch (exportDateName.getName()) {
-            case "секунды":
-                try {
-                    return new Long((nowDate.getTime() - dateFormat.parse(birthdayDate).getTime()) / 1000);
-                } catch (ParseException e) {
-                    return null;
-                }
-            case "минуты":
-                try {
-                    return new Long((nowDate.getTime() - dateFormat.parse(birthdayDate).getTime()) / (1000 * 60));
-                } catch (ParseException e) {
-                    return null;
-                }
-            case "часы":
-                try {
-                    return new Long((nowDate.getTime() - dateFormat.parse(birthdayDate).getTime()) / (1000 * 60 * 60));
-                } catch (ParseException e) {
-                    return null;
-                }
-            case "дни":
-                try {
-                    return new Long((nowDate.getTime() - dateFormat.parse(birthdayDate).getTime()) / (1000 * 60 * 60 * 24));
-                } catch (ParseException e) {
-                    return null;
-                }
-                default: return null;
+        try {
+            switch (exportDateName.getName()) {
+                case "секунды":
+                        return new Long((nowDate.getTime() - dateFormat.parse(birthdayDate).getTime()) / 1000);
+                case "минуты":
+                        return new Long((nowDate.getTime() - dateFormat.parse(birthdayDate).getTime()) / (1000 * 60));
+                case "часы":
+                        return new Long((nowDate.getTime() - dateFormat.parse(birthdayDate).getTime()) / (1000 * 60 * 60));
+                case "дни":
+                        return new Long((nowDate.getTime() - dateFormat.parse(birthdayDate).getTime()) / (1000 * 60 * 60 * 24));
+                case "месяцы":
+                    return new Long((nowDate.getTime() - dateFormat.parse(birthdayDate).getTime()) / (1000 * 60 * 60 * 24*100));
+                    default:
+                        return null;
+            }
+        }catch (ParseException e) {
+            return null;
         }
     }
 }
