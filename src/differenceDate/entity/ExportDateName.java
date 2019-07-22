@@ -1,4 +1,4 @@
-package entity;
+package differenceDate.entity;
 
 public enum ExportDateName {
     second("секунды"),
